@@ -324,7 +324,7 @@ console.log(replaceChar("HellO"));
 // Task 26:
 // Дана строка. Напишите функцию, которая возвращает данную строку n раз (по умолчанию 1)
 
-function returnStr(str, number) {
+function returnStr(str, number = 1) {
   let i = 0;
   result = "";
   while (i <= number){
@@ -338,6 +338,12 @@ function returnStr(str, number) {
   
 // Task 27:
 // Напишите функцию, которая вставляет строки в строку в определенной позиции (по умолчанию 1).
+
+function stringIntoString(str1, str2, mark = 1){
+  return str1.substr(0, mark) + " " + str2 + " " + str1.substr(mark)
+   
+ }
+ console.log(stringIntoString("One field", "Second mark", 5));
 
 
 
@@ -367,7 +373,12 @@ console.log(countWordsString("HellO Mike"));
 // Task 30:
 // Напишите функцию, которая возвращает true если строка заканчивается указанным суффиксом
 
-
+function stringEndTrue(str, strEnd){
+  let name = str.split(" ").pop();
+  return name === strEnd ? true: false;
+ 
+}
+console.log(stringEndTrue("One field", "field"));
 
 
 // Task 31:
@@ -419,3 +430,283 @@ function aggregateFunction(number, number2, mark){
 
 }
 console.log(aggregateFunction(2, 3, "*"));
+
+// Task 34:
+// Дана строка. Напишите функцию, которая ищет слово без учета регистра.
+
+function stringFound(str, word){
+  let lowWord = word.toLowerCase();
+  let lowStr = str.toLowerCase();
+   if (str.indexOf(word) !== -1) {
+     return word
+   } else if ( lowStr.indexOf(lowWord) !== -1){
+     return word
+   }else {
+     return false;
+   }
+  
+}
+console.log(stringFound("One field", "Field"));
+
+// Task 35:
+// Дана строка. Напишите функцию, которая проверяет, является ли символ в указанном индексе строчным
+
+function smallChar(str, number){
+  return str[number] === str[number].toLowerCase() ? true : false;  
+}
+console.log(smallChar("One field", 0));
+
+// Task 36:
+// Напишите функцию, которая возвращает уникальный guid (сокращение от «Globally Unique Identifier?») Указанной длины( по уполчанию 32)
+
+function stringGuid(number = 32){
+  var dt = new Date().getTime();
+  var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+      var r = (dt + Math.random()*16)%16 | 0;
+      dt = Math.floor(dt/16);
+      return (c=='x' ? r :(r&0x3|0x8)).toString(16);
+  });
+  return uuid;
+}
+
+console.log(stringGuid());
+
+// Task 37:
+// Дан массив строк. Напишите функцию, которая преобразует массив строку, где слова разделены указанным символом
+
+function arrayToString(a, b, c, symbol){
+  let elements = [a, b, c];
+  return elements.join(symbol);
+}
+
+console.log(arrayToString("I", "like", "books", "/"));
+
+// Task 38:
+// Дана строка. Напишите функцию, которая убирает лишнии пробелы из строки.
+// Например:  "  Mother   ,  father and . " => "Mother ,  father and."
+
+function spaceDelete(str){
+  const trimmedStr = str.trim();
+  const withSpace = trimmedStr.replaceAll(/\s+/g, " ");
+  const withSpaceBeforeDot = withSpace.replace(/ +(\,)/g, "$1");
+  return withSpaceBeforeDot.replace(/ +(\.)/g, "$1")   
+}
+
+console.log(spaceDelete("  Mother   ,  father and . "));
+
+// Task 39:
+// Дана строка. Напишите функцию, которая возвращает символ, который встречается в строке наибольшее количество раз
+
+
+
+
+// Task 40:
+// Дана строка. Напишите функцию, которая возвращает символы строки и количество раз, которое они встречаются в данной строке
+
+
+
+
+// Task 41:
+// Дана строка.Напишите функцию, которая возвращает строку с буквами в алфавитном порядке
+// Например "pab21"  => "12abp"
+
+function alphabetChar(str){
+  return str.split('').sort().join('');
+}
+
+console.log(alphabetChar("i like little books"));
+
+// Task 42:
+// Дана строка.  Напишите функцию, которая подсчитывает количество гласных в строке
+
+function alphabetChar(str){
+  var vowelList = 'aeiouAEIOU';
+  var vcount = 0;
+  
+  for(var x = 0; x < str.length ; x++) {
+    if (vowelList.indexOf(str[x]) !== -1) {
+      vcount += 1;
+    }
+  
+  }
+  return vcount;
+
+}
+
+console.log(alphabetChar("i like little books"));
+
+// Task 42:
+// Дана строка. Напишите функцию, которая возвращает только уникальные символы
+
+function uniqueChar(str){
+  return uniqueChars = Array.from(new Set(str)).join();
+  
+
+}
+
+console.log(uniqueChar("i like little books"));
+
+// Task 43:
+// Напишите функцию, которая выводит таблицу умножения
+
+function multiplicationTable(){
+  var num=0;
+   for(var i=1 ;i<10;i++){
+       for(var j=1;j<10;j++){
+           num=i*j;
+           //Если продукт представляет собой однозначную цифру, добавьте два пробела впереди, чтобы сохранить очередь.
+           if(num/10<1){
+               num=" "+i*j;
+           }
+           if(j<=i) {
+               console.log(j + "*" + i + "=" + num + " ");
+           }
+       }
+       console.log(" ");
+   }
+  }
+  
+
+  // Task 44:
+// Напишите функцию, которая эмулирует работу таймера. 
+// Т.е выводи в консоль каждую секунду
+//    "14:37:44";
+//    "14:37:42";
+//    "14:37:41";
+// На вход передается строка с количеством секунд
+
+function timer(str){
+   
+  let sec = Number(str.split(":").pop());
+  while (sec < 59){
+     sec = sec + 1;
+     console.log(str.substr(0,6) + sec)
+  }
+  
+  }
+console.log(timer("20:17:40"));
+
+// Task 45:
+// Дано слово. Перенести первые k его букв в конец.
+
+function moveChar(str, number){
+  let firstLetters = str.substr(0, number);
+  let lastLetters = str.substr(number, str.length);
+  return lastLetters + firstLetters; 
+   }
+console.log(moveChar("Onebigword", 3));
+
+// Task 46:
+//Даны три слова. Напишите функцию, которая возвращает их общие буквы. Повторяющиеся буквы каждого слова не рассматривать.
+
+function commonChar(str)
+{
+   let result = "";
+for(i=0; i < str.length; i++)
+  {
+   if (str.split(str[i]).length-1 > 1) 
+   {
+    result = `${result}${str[i]}`;
+   }  
+  }
+  return result;
+
+} 
+console.log(commonChar("ne boing wonrd"));
+
+
+// Task 47:
+//Дано предложение. Напишите функцию, которая возвращает:
+//а) его слова, начинающиеся и оканчивающиеся на одну и ту же букву;
+//б) его слова, которые содержат ровно три буквы е;
+//в) его слова, которые содержат хотя бы одну букву о.
+
+
+
+// Task 48:
+//Напишите функцию, которая проверяет валидный ли емейл. 
+//Электронные письма должны иметь имя пользователя, состоящее только из букв и цифр английского алфавита, 
+//знака «@» и доменного имени после него. 
+//Доменое имя должно состоять только из 2 строк содержащих только буквы и цифры, разделенных одной точкой  (e.g mail.ru). 
+
+function validateEmail(email) {
+  var re = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
+  return re.test(String(email).toLowerCase());
+}
+console.log(validateEmail("len@gmail.com"));
+
+// Task 49:
+/* Напишите функцию, которая автоматически заполняет форму для ленивого клиента. Клиент предоставит вам 3 элемента данных о себе — 
+его имя пользователя, адрес электронной почты и номер телефона. 
+После этих 3 элементов вам будет предоставлена форма в виде текста с несколькими заполнителями. 
+Вы должны заменить каждый допустимый заполнитель соответствующим значением. 
+Заполнители имеют специальные символы и могут содержать только буквы английского алфавита. Существует 3 типа допустимых заполнителей:
+    <!{letters}!> - поставить данное имя пользователя вместо этого
+    <@{letters}@> - поставить указанный адрес электронной почты вместо этого
+    <+{letters}+> - поставить указанный адрес электронной почты вместо этого
+Пример текста:
+    Hello, <!username!>!
+    Welcome to your Personal profile.
+    Here you can modify your profile freely.
+    Your current username is: <!fdsfs!>. Would you like to change that? (Y/N)
+    Your current email is: <@DasEmail@>. Would you like to change that? (Y/N)
+    Your current phone number is: <+number+>. Would you like to change that? (Y/N)
+*/
+
+function lazyUser(str, email, phone) {
+   
+  console.log("Hello," + " " + str + "!");
+  console.log("Welcome to your Personal profile. \nHere you can modify your profile freely.");
+  console.log("Your current username is:" + " " + str + ". Would you like to change that? (Y/N)");
+  console.log("Your current email is: " + email + ". Would you like to change that? (Y/N).\nYour current phone number is: " + phone + ". Would you like to change that? (Y/N)")
+}
+console.log(lazyUser("Lena", "len@gmail.com", "+375333581904"));
+
+//Task 50
+/*
+Вам дан текст с числами, умноженными на *, в формате {num1} * {num2}. 
+Ваша задача состоит в том, чтобы извлечь каждые два числа в приведенном выше формате, 
+умножить их и заменить их произведением. 
+Первое число целое, может быть отрицательным.
+ Второе число является целым числом или числом с плавающей запятой и может быть отрицательным. 
+ Вокруг символа «*» могут быть пробелы.
+"My bill: 2*2.50 (beer); 2* 1.20 (kepab); -2 * 0.5 (deposit)"  => "My bill: 5 (beer); 2.4 (kepab); -1 (deposit)."
+*/
+
+function bill(str){
+   
+  let array = [...str]
+  .map(i => {if(isFinite(i) == true || i == "."){return i}else{return " "}})
+  .join("")
+  .split(" ")
+  .filter(i => i != "")
+  .map(i => Number(i))
+  let firstN = array.slice(0, 1);
+  let secondN = array.slice(1, 2);
+  let multiplyN = firstN * secondN;
+  let firstN2 = array.slice(2, 3);
+  let secondN2 = array.slice(3, 4);
+  let multiplyN2 = firstN2 * secondN2;
+  let firstN3 = array.slice(4, 5);
+  let secondN3 = array.slice(5, 6);
+  let multiplyN3 = firstN3 * secondN3;
+  console.log(firstN3);
+  }
+  
+
+
+console.log(bill("My bill: 2*2.50 (beer); 2* 1.20 (kepab); -2 * 0.5 (deposit)"));
+
+//Task 51
+// Напишите функцию, которая будет принимать на вход строку с надписью для гравировки. На выход функция отдает стоимость для гравировки. 
+//Если строка пустая или равна undefined, то цена гравировки равна 0. Цена за 1 символ = 2$
+
+function engravingCost(str) {
+  if (str.length > 0 ) {
+     return str.length
+  } else {
+     return 0
+  }
+
+}
+console.log(engravingCost("onetwo"));
